@@ -101,7 +101,7 @@ One can then access the datasets described above by just calling the database cl
   
 A few technical notes:
   - The `database` class is a [singleton](https://en.wikipedia.org/wiki/Singleton_pattern): only one istance can exist at any time. Multiple calls will return pointers to the same instance. This is done to prevent useless memory allocation.
-  - We do [lazy loading](https://en.wikipedia.org/wiki/Lazy_loading) here and only read in a dataset when/if the user asks for it.  Moreover, the `spops` remembers which dataset have already been loaded, such that each subsequent access is read in from memory, not disk. So for instance:
+  - We do [lazy loading](https://en.wikipedia.org/wiki/Lazy_loading) here and only read in a dataset when/if the user asks for it.  Moreover, `spops` remembers which dataset have already been loaded, such that each subsequent access is read in from memory, not disk. So for instance:
 
         from contexttimer import timer
         @timer()
