@@ -135,6 +135,8 @@ if __name__ == "__main__":
     model = {"kicks":"70", "spins":"collapse", "tides":"time", "detector":"LIGO"}
     var='chieff'
     print(db(model,var))
+    var='detectionrate'
+    print db(model,var)
 
     db1=database()
     db2=database()
@@ -144,6 +146,6 @@ if __name__ == "__main__":
     @timer()
     def read_from_spops(model,var):
         return db(model,var)
-    var='detectionrate'
+    var='Mzams_a'
     read_from_spops(model,var)
     read_from_spops(model,var)
