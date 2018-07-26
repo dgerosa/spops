@@ -20,8 +20,9 @@ To access the effective spin distributio of one specific model with python:
   import spops
   db=spops.database()
   
-  model = {"kicks":"100", "spins":"collapse", "tides":"time", "detector":"LIGO"}
-  print db(model,'chieff')  
+  model = {"kicks":"70", "spins":"collapse", "tides":"time", "detector":"LIGO"}
+  var='chieff'
+  print db(model,var)  
 
 
 ### Database
@@ -77,9 +78,38 @@ Each group contains the following datasets:
 
 We also provide a simple python module to facitate access to our database. `spops` is compatibule with both Python 2 and Python 3 and can installed from the [Python Package index](https://pypi.python.org/pypi/surrkick) using:
 
-  pip install spops
+    pip install spops
   
-The module contains a single class, called `database` 
+The module contains a single class, called `database`. To initialize the class:
 
-Note that `database` is a singleton: only one istance can exist at any time. Multiple calls will return pointers to the same instance.
+    import spops
+    db = spops.database(h5filename='spops.h5',h5dir=None)
+
+The input parameters are: 
+  
+  - `h5filename`: database file name, default is `spops.h5`.
+  - `h5dir`: directory of the database; if `None` (default) the code will look for detabase in both the location where the `spops` module is installed (i.e. `os.path.dirname(os.path.abspath(__file__))`) and the execution location (i.e. `.`).
+
+The population sysnthesis run of interest can be specified using a python dictionary with the keys as above, so for instance
+  
+    model = {"kicks":"70", "spins":"collapse", "tides":"time", "detector":"LIGO"}
+
+One can then access the datasets described above by just calling the database class:
+
+    var='chieff'
+    print db(model,var)
+  
+A few technical notes:
+  - The `database` class is a [singleton](https://en.wikipedia.org/wiki/Singleton_pattern): only one istance can exist at any time. Multiple calls will return pointers to the same instance. This is done to prevent useless memory allocation.
+  - The class remembers which dataset have already been loaded, and read from file only if necessary. Each subsequent access to the same dataset is load from memory, not disk. So for instance:
+
+        from contexttimer import timer
+        @timer()
+        def read_from_spops(model,var):
+            return db(model,var)
+        read_from_spops(model,var)
+        read_from_spops(model,var)
+
+        >>>> function read_from_spops execution time: 0.006 
+        >>>> function read_from_spops execution time: 0.000 
  
