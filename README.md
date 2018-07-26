@@ -98,14 +98,14 @@ The population sysnthesis run of interest can be specified using a python dictio
 One can then access the datasets described above by just calling the database class:
 
     var='chieff'
-    print db(model,var)
+    print(db(model,var))
   
 A few technical notes:
   - The `database` class is a [singleton](https://en.wikipedia.org/wiki/Singleton_pattern): only one istance can exist at any time. Multiple calls will return pointers to the same instance. This is done to prevent useless memory allocation. For instance:
     
         db1=spops.database()
         db2=spops.database()
-        print db1==db2
+        print(db1==db2)
     
         >>>> True
   
@@ -115,9 +115,10 @@ A few technical notes:
         @timer()
         def read_from_spops(model,var):
             return db(model,var)
+        var='detectionrate'
         read_from_spops(model,var)
         read_from_spops(model,var)
-
-        >>>> function read_from_spops execution time: 0.006 
+        
+        >>>> function read_from_spops execution time: 0.002 
         >>>> function read_from_spops execution time: 0.000 
  
