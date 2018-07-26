@@ -32,7 +32,7 @@ We provide a database in `h5` format containing all population sysnthesis distri
 
 The database's size is ~400MB, and can be downloaded in the [GitHub release page](https://github.com/dgerosa/spops/releases). The link pointing to the current version is 
 
-    https://github.com/dgerosa/spops/releases/download/untagged-0737b9158964589238f2/spops.h5
+    https://github.com/dgerosa/spops/releases/download/v0.1/spops.h5
 
 Data are structured in four nested groups acccording to the model options described in [arXiv:XXXX.XXXXXX](https://arxiv.org/abs/arXiv:XXXX.XXXX). These groups are:
   - **kicks**: Available options are `['0','25','50','70','130','200','265']`.
@@ -83,6 +83,8 @@ We also provide a simple python module to facitate access to our database. `spop
 
     pip install spops
   
+To download the database in the 
+  
 The module contains a single class, called `database`. To initialize the class:
 
     import spops
@@ -91,7 +93,7 @@ The module contains a single class, called `database`. To initialize the class:
 The input parameters are: 
   
   - `h5filename`: database file name, default is `spops.h5`.
-  - `h5dir`: directory of the database; if `None` (default) the code will look for detabase in both the location where the `spops` module is installed (this is `os.path.dirname(os.path.abspath(__file__))`) and the execution location (this is `.`).
+  - `h5dir`: directory of the database; if `None` (default) the code will look for detabase in both the location where the `spops` module is installed (this is `os.path.dirname(os.path.abspath(spops.__file__))`) and the execution location (this is `.`).
 
 The population sysnthesis run of interest can be specified using a python dictionary with the keys as above, so for instance
   
