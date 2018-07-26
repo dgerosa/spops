@@ -15,14 +15,15 @@ ZENODOBADGE Stable version released together with the first arxiv submission of 
 
 ### Example
 
-To access the effective spin distributio of one specific model with python:
+To access the effective spin distribution and the detection rates of one specific model with python:
 
     import spops
     db=spops.database()
     model = {"kicks":"70", "spins":"collapse", "tides":"time", "detector":"LIGO"}
     var='chieff'
     print db(model,var)  
-
+    var='detectionrate'
+    print db(model,var)
 
 ### Database
 
@@ -43,7 +44,7 @@ Each group contains the following datasets:
   - `M_a`: Mass of the black hole formed by the heavier ZAMS star (solar masses).
   - `M_b`: Mass of the black hole formed by the lighter ZAMS star (solar masses).
   - `met`: Metallicity.
-  - `path`: Formation pathway, see Sec. 2D in [arXiv:XXXX.XXXXXX].
+  - `path`: Formation pathway, convention in Sec. 2D of our paper.
   - `theta_bSN1_a`: Tilt angle of the object formed by the heavier ZAMS star before the first core collapse.
   - `theta_bSN1_b`: Tilt angle of the object formed by the lighter ZAMS star before the first core collapse.
   - `phi_bSN1_a`: Azimuthal angle of the object formed by the heavier ZAMS star before the first core collapse.
@@ -87,7 +88,7 @@ The module contains a single class, called `database`. To initialize the class:
 The input parameters are: 
   
   - `h5filename`: database file name, default is `spops.h5`.
-  - `h5dir`: directory of the database; if `None` (default) the code will look for detabase in both the location where the `spops` module is installed (i.e. `os.path.dirname(os.path.abspath(__file__))`) and the execution location (i.e. `.`).
+  - `h5dir`: directory of the database; if `None` (default) the code will look for detabase in both the location where the `spops` module is installed (this is `os.path.dirname(os.path.abspath(__file__))`) and the execution location (this is `.`).
 
 The population sysnthesis run of interest can be specified using a python dictionary with the keys as above, so for instance
   
