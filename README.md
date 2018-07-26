@@ -17,12 +17,11 @@ ZENODOBADGE Stable version released together with the first arxiv submission of 
 
 To access the effective spin distributio of one specific model with python:
 
-  import spops
-  db=spops.database()
-  
-  model = {"kicks":"70", "spins":"collapse", "tides":"time", "detector":"LIGO"}
-  var='chieff'
-  print db(model,var)  
+    import spops
+    db=spops.database()
+    model = {"kicks":"70", "spins":"collapse", "tides":"time", "detector":"LIGO"}
+    var='chieff'
+    print db(model,var)  
 
 
 ### Database
