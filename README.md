@@ -30,9 +30,7 @@ To access the effective spin distribution and the detection rates of one specifi
 
 We provide a database in `h5` format containing all population sysnthesis distributions perfomed with [StarTrack](https://www.syntheticuniverse.org/) and post-processed with [precession](https://davidegerosa.com/precession/). 
 
-The database's size is ~400MB, and can be downloaded in the [GitHub release page](https://github.com/dgerosa/spops/releases). The link pointing to the current version is 
-
-    https://github.com/dgerosa/spops/releases/download/v0.1/spops.h5
+The database's size is ~400MB, and can be downloaded in the [GitHub release page](https://github.com/dgerosa/spops/releases).
 
 Data are structured in four nested groups acccording to the model options described in [arXiv:XXXX.XXXXXX](https://arxiv.org/abs/arXiv:XXXX.XXXX). These groups are:
   - **kicks**: Available options are `['0','25','50','70','130','200','265']`.
@@ -83,7 +81,9 @@ We also provide a simple python module to facitate access to our database. `spop
 
     pip install spops
   
-To download the database in the 
+To download the database in a default location enter a python console and use:
+    
+    spops.download_database()
   
 The module contains a single class, called `database`. To initialize the class:
 
