@@ -13,6 +13,17 @@ You are more than welcome to use our database in your research; we kindly ask yo
 
 ZENODOBADGE Stable version released together with the first arxiv submission of  [arXiv:XXXX.XXXXXX](https://arxiv.org/abs/arXiv:XXXX.XXXX)
 
+### Example
+
+To access the effective spin distributio of one specific model with python:
+
+  import spops
+  db=spops.database()
+  
+  model = {"kicks":"100", "spins":"collapse", "tides":"time", "detector":"LIGO"}
+  print db(model,'chieff')  
+
+
 ### Database
 
 We provide a database in `h5` format containing all population sysnthesis distributions perfomed with [StarTrack](https://www.syntheticuniverse.org/) and post-processed with [precession](https://davidegerosa.com/precession/). 
@@ -20,20 +31,55 @@ We provide a database in `h5` format containing all population sysnthesis distri
 The database's size is ~400MB, and can be downloaded in the GitHub release page.
 
 Data are structured in four nested groups acccording to the model options described in [arXiv:XXXX.XXXXXX](https://arxiv.org/abs/arXiv:XXXX.XXXX). These groups are:
-  - `kicks`. Available options are `['0','25','50','70','130','200','265']`
-  - `spins`. Available options are `['collapse','max','uniform']`
-  - `tides`. Available options are `['time','alltides','notides']`
-  - `detector`. Available options are `['LIGO','Voyager','CosmicExplorer']`
+  - **kicks**: Available options are `['0','25','50','70','130','200','265']`.
+  - **spins**: Available options are `['collapse','max','uniform']`.
+  - **tides**: Available options are `['time','alltides','notides']`.
+  - **detector**: Available options are `['LIGO','Voyager','CosmicExplorer']`.
 
 Each group contains the following datasets:
 
-
-
+  - `Mzams_a`: ZAMS mass of the heavier star (solar masses).
+  - `Mzams_b`: ZAMS mass of the lighter star (solar masses).
+  - `M_a`: Mass of the black hole formed by the heavier ZAMS star (solar masses).
+  - `M_b`: Mass of the black hole formed by the lighter ZAMS star (solar masses).
+  - `met`: Metallicity.
+  - `path`: Formation pathway, see Sec. 2D in [arXiv:XXXX.XXXXXX].
+  - `theta_bSN1_a`: Tilt angle of the object formed by the heavier ZAMS star before the first core collapse.
+  - `theta_bSN1_b`: Tilt angle of the object formed by the lighter ZAMS star before the first core collapse.
+  - `phi_bSN1_a`: Azimuthal angle of the object formed by the heavier ZAMS star before the first core collapse.
+  - `phi_bSN1_b`: Azimuthal angle of the object formed by the lighter ZAMS star before the first core collapse.
+  - `theta_aSN1_a`: Tilt angle of the object formed by the heavier ZAMS star after the first core collapse.
+  - `theta_aSN1_b`: Tilt angle of the object formed by the lighter ZAMS star after the first core collapse.
+  - `phi_aSN1_a`: Azimuthal angle of the object formed by the heavier ZAMS star after the first core collapse.
+  - `phi_aSN1_b`: Azimuthal angle of the object formed by the lighter ZAMS star after the first core collapse.
+  - `theta_bSN2_a`: Tilt angle of the object formed by the heavier ZAMS star before the second core collapse.
+  - `theta_bSN2_b`: Tilt angle of the object formed by the lighter ZAMS star before the second core collapse.
+  - `phi_bSN2_a`: Azimuthal angle of the object formed by the heavier ZAMS star before the second core collapse.
+  - `phi_bSN2_b`: Azimuthal angle of the object formed by the lighter ZAMS star before the second core collapse.
+  - `theta_aSN2_a`: Tilt angle of the object formed by the heavier ZAMS star after the second core collapse.
+  - `theta_aSN2_b`: Tilt angle of the object formed by the lighter ZAMS star after the second core collapse.
+  - `phi_aSN2_a`: Azimuthal angle of the object formed by the heavier ZAMS star after the second core collapse.
+  - `phi_aSN2_b`: Azimuthal angle of the object formed by the lighter ZAMS star after the second core collapse.
+  - `tidealign`: boolean flag marking if the stellar spin was realigned by tides.
+  - `M`: Black-hole binary total mass (solar masses).
+  - `q`: Black-hole binary mass ratio.
+  - `chi1`: Spin of the heavier black hole.
+  - `chi2`: Spin of the lighter black hole.
+  - `chieff`: Black-hole binary effective spin
+  - `morph`: Spin morphology (-1: Librating about $0$, 0: Circulating, +1: Librating about $\pi$)
+  - `theta1`: Tilt angle of the heavier black hole at 20 Hz.
+  - `theta2`: Tilt angle of the heavier black hole at 20 Hz.
+  - `deltaphi`: Difference between the azimuthal spin angles at 20 Hz.
+  - `detectionrate`: Cumulative detection rate, i.e. the weight of each stellar evolution.
 
 
 ### Python module
 
-We also provide a simple python module, called `spops`, to facitate access to our database. `spops` is compatibule with both Python 2 and Python 3 and can installed from the [Python Package index](https://pypi.python.org/pypi/surrkick) using:
+We also provide a simple python module to facitate access to our database. `spops` is compatibule with both Python 2 and Python 3 and can installed from the [Python Package index](https://pypi.python.org/pypi/surrkick) using:
 
   pip install spops
+  
+The module contains a single class, called `database` 
+
+Note that `database` is a singleton: only one istance can exist at any time. Multiple calls will return pointers to the same instance.
  
