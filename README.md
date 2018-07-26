@@ -103,8 +103,8 @@ One can then access the datasets described above by just calling the database cl
 A few technical notes:
   - The `database` class is a [singleton](https://en.wikipedia.org/wiki/Singleton_pattern): only one istance can exist at any time. Multiple calls will return pointers to the same instance. This is done to prevent useless memory allocation. For instance:
     
-        db1=database()
-        db2=database()
+        db1=spops.database()
+        db2=spops.database()
         print db1==db2
     
         >>>> True
