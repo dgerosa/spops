@@ -1,4 +1,4 @@
-# spops
+# SPopS
 
 Data release supporting [arXiv:XXXX.XXXXXX](https://arxiv.org/abs/arXiv:XXXX.XXXX). Here provide our database and a short python code to query it. 
 
@@ -7,7 +7,7 @@ We study the expected spin misalignments of merging binary black holes formed in
 
 ### Credit
 
-You are more than welcome to use our database in your research; we kindly ask you to cite our paper above. For questions or bugs, just ask [me](www.davidegerosa.com). Oh, and before you ask, **spops** means "**S**pinning black-hole binary **POP**ulation **S**ynthesis".
+You are more than welcome to use our database in your research; we kindly ask you to cite our paper above. For questions or bugs, just ask [me](www.davidegerosa.com). Oh, and before you ask, **SPopS** means "**S**pinning black-hole binary **POP**ulation **S**ynthesis".
 
 
 ### Releases
