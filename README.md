@@ -115,7 +115,7 @@ A few technical notes:
         @timer()
         def read_from_spops(model,var):
             return db(model,var)
-        var='detectionrate'
+        var='Mzams_a'
         read_from_spops(model,var)
         read_from_spops(model,var)
         
