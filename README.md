@@ -81,10 +81,12 @@ We also provide a simple python module to facitate access to our database. `spop
 
     pip install spops
   
-To download the database in a default location enter a python console and use:
+To download the database you can either use the link above, or enter a python console and type:
     
-    spops.download_database()
-  
+    spops.download()
+ 
+By default, this will save the database in the current location. 
+
 The module contains a single class, called `database`. To initialize the class:
 
     import spops
