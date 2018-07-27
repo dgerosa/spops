@@ -1,29 +1,27 @@
 '''
 SPopS: Spinning black-hole binary Population Synthesis
 Data release supporting Gerosa et al 2018 `Spin orientations of merging black holes formed from the evolution of stellar binaries'.
-Please https://github.com/dgerosa/spops/tree/master
+See https://github.com/dgerosa/spops
 '''
 
 from __future__ import print_function
-#from builtins import dict
-
 import warnings
 warnings.filterwarnings("ignore", message="numpy.dtype size changed")
 import os,sys
 import numpy as np
 import h5py
 import requests
-from clint.textui import progress
 from singleton_decorator import singleton
 
 if __name__!="__main__":
     __name__            = "spops"
-__version__             = "0.0.4"
+__version__             = "0.0.5"
 __description__         = "Database of population synthesis simulations of spinning black-hole binaries"
 __license__             = "MIT"
 __author__              = "Davide Gerosa"
 __author_email__        = "dgerosa@caltech.edu"
 __url__                 = "https://github.com/dgerosa/spops"
+
 
 def download(outfile=None):
     url = 'https://github.com/dgerosa/spops/releases/download/v'+__version__+'/spops.h5'
@@ -31,22 +29,21 @@ def download(outfile=None):
     if outfile==None:
         outfile = os.getcwd()+'/spops.h5'
 
-    print("Downloading database:\n"+url+"\n"+outfile)
+    print("Downloading database from url:\n"+url)
 
     response = requests.get(url, stream=True)
     handle = open(outfile, "wb")
-    for chunk in progress.bar(response.iter_content(chunk_size=1024), expected_size=(int(response.headers.get('content-length'))/1024) + 1):
+    print("In progress...")
+    for chunk in response.iter_content(chunk_size=1024):
         if chunk:  # filter out keep-alive new chunks
             handle.write(chunk)
+    print("Done! Output file: "+"\n"+outfile+"\n"+"Size: "+str(round(os.path.getsize(outfile)/1024.**2.,2))+" MB.")
 
-
-
-
-
+    return url, outfile
 
 @singleton
 class database(object):
-    ''' Access the database of black-hole binary populations by Gerosa et al. 2018 (arxiv:XXXX.XXXXX)
+    ''' Access the database of black-hole binary populations by Gerosa et al. 2018.
     Usage:  db=spops.database()
             db(model,variable)
     where e.g.
@@ -72,15 +69,17 @@ class database(object):
 
         # Models available
         self.options={}
-        self.options['kicks'] = ['0','25','50','70','130','200','265']
-        self.options['spins'] = ['collapse','max','uniform']
-        self.options['tides'] = ['time','alltides','notides']
-        self.options['detector'] = ['LIGO','Voyager','CosmicExplorer']
+        self.options['kicks'] = sorted(['0','25','50','70','130','200','265'])
+        self.options['spins'] = sorted(['collapse','max','uniform'])
+        self.options['tides'] = sorted(['time','alltides','notides'])
+        self.options['detector'] = sorted(['LIGO','Voyager','CosmicExplorer'])
         # Labes available
         self.labels={}
         self.labels['ST'] = ['Mzams_a','Mzams_b','M_a','M_b','met','path']
         self.labels['PN'] = ['M','q','chi1','chi2','theta_bSN1_a','theta_bSN1_b','phi_bSN1_a','phi_bSN1_b','theta_aSN1_a','theta_aSN1_b','phi_aSN1_a','phi_aSN1_b','theta_bSN2_a','theta_bSN2_b','phi_bSN2_a','phi_bSN2_b','theta_aSN2_a','theta_aSN2_b','phi_aSN2_a','phi_aSN2_b','chieff','morph','theta1','theta2','deltaphi','tidealign']
         self.labels['rates'] = ['detectionrate']
+        self.vars = sorted(self.labels['ST']+self.labels['PN']+self.labels['rates'],key= lambda s:s.lower())
+
         # Empty dictionary to store which info have been loaded already
         self.stored={}
 
@@ -154,9 +153,6 @@ class database(object):
 
 
 if __name__ == "__main__":
-    print("shit")
-    download()
-    sys.exit()
 
     db=database()
     model = {"kicks":"70", "spins":"collapse", "tides":"time", "detector":"LIGO"}
@@ -176,3 +172,6 @@ if __name__ == "__main__":
     var='Mzams_a'
     read_from_spops(model,var)
     read_from_spops(model,var)
+
+    print(db.options)
+    print(db.vars)

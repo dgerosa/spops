@@ -24,7 +24,7 @@ setup(
     ],
     keywords='gravitational-wave, black-hole binary',
     packages=[spops.__name__],
-    install_requires=['numpy','h5py','requests','singleton_decorator','contexttimer','clint'],
+    install_requires=['numpy','h5py','requests','singleton_decorator','contexttimer'],
     include_package_data=True,
     zip_safe=False,
 )
