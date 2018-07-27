@@ -1,23 +1,47 @@
-''' SPopS: Spinning black-hole binary Population Synthesis
+'''
+SPopS: Spinning black-hole binary Population Synthesis
 Data release supporting Gerosa et al 2018 `Spin orientations of merging black holes formed from the evolution of stellar binaries'.
 Please https://github.com/dgerosa/spops/tree/master
 '''
+
 from __future__ import print_function
+#from builtins import dict
+
 import warnings
 warnings.filterwarnings("ignore", message="numpy.dtype size changed")
 import os,sys
 import numpy as np
 import h5py
+import requests
+from clint.textui import progress
 from singleton_decorator import singleton
 
-__author__ = "Davide Gerosa"
-__email__ = "dgerosa@caltech.edu"
-__license__ = "MIT"
-__version__ = "0.1"
-__doc__+="\n\n"+"Authors: "+__author__+"\n"+\
-        "email: "+__email__+"\n"+\
-        "Licence: "+__license__+"\n"+\
-        "Version: "+__version__
+if __name__!="__main__":
+    __name__            = "spops"
+__version__             = "0.0.4"
+__description__         = "Database of population synthesis simulations of spinning black-hole binaries"
+__license__             = "MIT"
+__author__              = "Davide Gerosa"
+__author_email__        = "dgerosa@caltech.edu"
+__url__                 = "https://github.com/dgerosa/spops"
+
+def download(outfile=None):
+    url = 'https://github.com/dgerosa/spops/releases/download/v'+__version__+'/spops.h5'
+    #url = "https://drive.google.com/a/go.olemiss.edu/uc?export=download&confirm=oZhQ&id=1eY847W14idAcdU2oC0DMzT4jRDwtPTV8"
+    if outfile==None:
+        outfile = os.getcwd()+'/spops.h5'
+
+    print("Downloading database:\n"+url+"\n"+outfile)
+
+    response = requests.get(url, stream=True)
+    handle = open(outfile, "wb")
+    for chunk in progress.bar(response.iter_content(chunk_size=1024), expected_size=(int(response.headers.get('content-length'))/1024) + 1):
+        if chunk:  # filter out keep-alive new chunks
+            handle.write(chunk)
+
+
+
+
 
 
 @singleton
@@ -130,13 +154,16 @@ class database(object):
 
 
 if __name__ == "__main__":
+    print("shit")
+    download()
+    sys.exit()
 
     db=database()
     model = {"kicks":"70", "spins":"collapse", "tides":"time", "detector":"LIGO"}
     var='chieff'
     print(db(model,var))
     var='detectionrate'
-    print db(model,var)
+    print(db(model,var))
 
     db1=database()
     db2=database()
