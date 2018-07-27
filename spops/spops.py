@@ -15,7 +15,7 @@ from singleton_decorator import singleton
 
 if __name__!="__main__":
     __name__            = "spops"
-__version__             = "0.0.5"
+__version__             = "0.0.6"
 __description__         = "Database of population synthesis simulations of spinning black-hole binaries"
 __license__             = "MIT"
 __author__              = "Davide Gerosa"
@@ -37,7 +37,15 @@ def download(outfile=None):
     for chunk in response.iter_content(chunk_size=1024):
         if chunk:  # filter out keep-alive new chunks
             handle.write(chunk)
-    print("Done! Output file: "+"\n"+outfile+"\n"+"Size: "+str(round(os.path.getsize(outfile)/1024.**2.,2))+" MB.")
+    filesize = round(os.path.getsize(outfile)/1024.**2.,2) # MB
+    if filesize<1.:
+        os.remove(outfile)
+        raise IOError("Could not download database. Please find the latest version at"+"\n"+"https://github.com/dgerosa/spops/releases")
+    else:
+        print("Done! Output file: "+"\n"+outfile+"\n"+"Size: "+str(filesize)+" MB.")
+
+
+
 
     return url, outfile
 
