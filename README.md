@@ -106,6 +106,11 @@ One can then access the datasets described above by just calling the database cl
     var='chieff'
     print(db(model,var))
   
+To list the model options and the available variables use
+    
+    print(db.options)
+    print(db.vars)
+  
 A few technical notes:
   - The `database` class is a [singleton](https://en.wikipedia.org/wiki/Singleton_pattern): only one istance can exist at any time. Multiple calls will return pointers to the same instance. This is done to prevent useless memory allocation. For instance:
     
