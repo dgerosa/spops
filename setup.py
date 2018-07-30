@@ -4,7 +4,6 @@
 from setuptools import setup
 import spops
 
-
 setup(
     name=spops.__name__,
     version=spops.__version__,
