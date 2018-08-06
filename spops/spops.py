@@ -63,9 +63,9 @@ class database(object):
         ''' Initialize class. Note this class is a singleton: only one istance can exist at any time. Multiple calls return pointers to the same instance.'''
 
         if h5dir==None:
-            for trydir in [os.path.dirname(os.path.abspath(__file__)),'.']:
+            for trydir in ['.',os.path.dirname(os.path.abspath(__file__))]:
                 self.filename = trydir+'/'+h5filename
-                if os.path.isfile(self.filename):
+                if os.path.isfile(h5filename):
                     break
         else:
             self.filename = h5dir+'/'+h5filename
