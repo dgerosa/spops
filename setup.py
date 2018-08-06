@@ -2,17 +2,22 @@
 #python setup.py sdist upload
 
 from setuptools import setup
-import spops
+
+def get_meta(metaname):
+    with open('spops/spops.py') as f:
+        for line in f.readlines():
+            if "__"+metaname+"__" in line and "__main__" not in line:
+                return line.split('"')[1]
 
 setup(
-    name=spops.__name__,
-    version=spops.__version__,
-    description=spops.__description__,
-    license=spops.__license__,
-    author=spops.__author__,
-    author_email=spops.__author_email__,
-    url=spops.__url__,
-    long_description="See: `"+spops.__url__+" <"+spops.__url__+">`_." ,
+    name=get_meta('name'),
+    version=get_meta('version'),
+    description=get_meta('description'),
+    license=get_meta('license'),
+    author=get_meta('author'),
+    author_email=get_meta('author_email'),
+    url=get_meta('url'),
+    long_description="See: `"+get_meta('url')+" <"+get_meta('url')+">`_." ,
     classifiers=[
         'Topic :: Scientific/Engineering :: Astronomy',
         'Topic :: Scientific/Engineering :: Physics',
@@ -22,7 +27,7 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
     keywords='gravitational-wave, black-hole binary',
-    packages=[spops.__name__],
+    packages=[get_meta('name')],
     install_requires=['numpy','h5py','requests','singleton_decorator','contexttimer'],
     include_package_data=True,
     zip_safe=False,
