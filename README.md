@@ -12,7 +12,8 @@ You are more than welcome to use our database in your research; we kindly ask yo
 
 ### Releases
 
-ZENODOBADGE Stable version released together with the first arxiv submission of  [arXiv:XXXX.XXXXXX](https://arxiv.org/abs/arXiv:XXXX.XXXX)
+[![DOI](https://zenodo.org/badge/142477838.svg)](https://zenodo.org/badge/latestdoi/142477838)
+ Stable version released together with the first arxiv submission of  [arXiv:XXXX.XXXXXX](https://arxiv.org/abs/arXiv:XXXX.XXXX)
 
 ### Example
 
