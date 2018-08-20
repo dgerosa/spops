@@ -1,4 +1,4 @@
-# SPopS
+# spops
 
 Data release supporting [arXiv:1808.02491](https://arxiv.org/abs/arXiv:1808.02491). Here provide our database and a short python code to query it. 
 
