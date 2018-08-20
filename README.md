@@ -7,13 +7,9 @@ We study the expected spin misalignments of merging binary black holes formed in
 
 ### Credit
 
-You are more than welcome to use our database in your research; we kindly ask you to cite our paper above. For questions or bugs, just ask [me](www.davidegerosa.com). Oh, and before you ask, **SPopS** means "**S**pinning black-hole binary **POP**ulation **S**ynthesis".
-
-
-### Releases
-
+You are more than welcome to use our database in your research; we kindly ask you to cite our paper above. For questions or bugs, just ask [me](www.davidegerosa.com). Oh, and before you ask, **SPopS** means "**S**pinning black-hole binary **POP**ulation **S**ynthesis". If you want to cite the database specifically, it's
 [![DOI](https://zenodo.org/badge/142477838.svg)](https://zenodo.org/badge/latestdoi/142477838)
- Stable version released together with the first arxiv submission of  [arXiv:1808.02491](https://arxiv.org/abs/arXiv:1808.02491)
+
 
 ### Example
 
