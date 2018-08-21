@@ -25,7 +25,6 @@ __url__                 = "https://github.com/dgerosa/spops"
 
 def download(outfile=None):
     url = 'https://github.com/dgerosa/spops/releases/download/v'+__version__+'/spops.h5'
-    #url = "https://drive.google.com/a/go.olemiss.edu/uc?export=download&confirm=oZhQ&id=1eY847W14idAcdU2oC0DMzT4jRDwtPTV8"
     if outfile==None:
         outfile = os.getcwd()+'/spops.h5'
 
