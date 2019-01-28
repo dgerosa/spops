@@ -1,7 +1,7 @@
 '''
 SPopS: Spinning black-hole binary Population Synthesis
 Data release supporting Gerosa et al 2018 `Spin orientations of merging black holes formed from the evolution of stellar binaries'.
-Data release supporting Gerosa et al 2013 `Multiband gravitational-wave event rates and stellar physics'.
+Data release supporting Gerosa et al 2019 `Multiband gravitational-wave event rates and stellar physics'.
 See https://github.com/dgerosa/spops
 '''
 
