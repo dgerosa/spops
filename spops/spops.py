@@ -91,6 +91,9 @@ class database(object):
         self.options['spins'] = sorted(['collapse','max','uniform'])
         self.options['tides'] = sorted(['time','alltides','notides'])
         self.options['detector'] = sorted(['LIGO','Voyager','CosmicExplorer','LISA','LISALIGO','LISACosmicExplorer'])
+        self.options['Tobs'] = sorted(['10','4'])
+        self.options['SNRthr'] = sorted(['4','8'])
+
         # Labes available
         self.labels={}
         self.labels['ST'] = ['Mzams_a','Mzams_b','M_a','M_b','met','zmer','path']
@@ -111,7 +114,6 @@ class database(object):
 
     def checkkeys(self,which,model):
         ''' Sanity check on the key in the `which` category provided by `model`'''
-
         if which not in model.keys():
             raise ValueError("Missing key, "+which)
         elif model[which] not in self.options[which]:
@@ -177,6 +179,12 @@ if __name__ == "__main__":
     db=database()
     model = {"kicks":"70", "spins":"collapse", "tides":"time", "detector":"LIGO"}
     var='chieff'
+    print(db(model,var))
+    var='detectionrate'
+    print(db(model,var))
+
+    model = {"kicks":"70", "spins":"collapse", "tides":"time", "detector":"LISACosmicExplorer", "Tobs":"10", "SNRthr":"8"}
+    var='q'
     print(db(model,var))
     var='detectionrate'
     print(db(model,var))
