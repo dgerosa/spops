@@ -30,7 +30,7 @@ To access the effective spin distribution and the LIGO detection rates of one sp
 For the same population synthesis simulation, this is the mass ratio of black hole binaries detectable by a multiband LISA+CosmicExplorer network
 
     model = {"kicks":"70", "spins":"collapse", "tides":"time", "detector":"LISACosmicExplorer", "Tobs":"10", "SNRthr":"8"}
-    var='met'
+    var='q'
     print(db(model,var)) 
     var='detectionrate'
     print(db(model,var))
@@ -74,12 +74,12 @@ The following variables are available:
   - `theta2`: Tilt angle of the heavier black hole at 20 Hz.
   - `deltaphi`: Difference between the azimuthal spin angles at 20 Hz.
   - `SNR`: Signal-to-noise ratio. For ground-based detector returns the optimal SNR. For LISA returns SNR evaluated at Tobs.
-  - `detectionrate`: Cumulative detection rate, i.e. the weight of each stellar evolution.
+  - `detectionrate`: Detection rate for the targeted detector.
 
 
 ### Python module
 
-We also provide a simple python module to facitate access to our database. `spops` is compatibule with both Python 2 and Python 3 and can installed from the [Python Package index](https://pypi.python.org/pypi/surrkick) using:
+We also provide a simple python module to facitate access to our database. `spops` is compatible with both Python 2 and Python 3 and can installed from the [Python Package index](https://pypi.python.org/pypi/surrkick) using:
 
     pip install spops
 
@@ -121,6 +121,7 @@ To list the model options and the available variables use
         db2=spops.database()
         print(db1==db2)
           
+
         >>>> True
 
   - We do [lazy loading](https://en.wikipedia.org/wiki/Lazy_loading) here and only read in a dataset when/if the user asks for it.  Moreover, `spops` remembers which dataset have already been loaded, such that each subsequent access is read in from memory, not disk. So for instance:
