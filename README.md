@@ -31,7 +31,7 @@ For the same population synthesis simulation, this is the mass ratio of black ho
 
     model = {"kicks":"70", "spins":"collapse", "tides":"time", "detector":"LISACosmicExplorer", "Tobs":"10", "SNRthr":"8"}
     var='q'
-    print(db(model,var)) 
+    print(db(model,var))
     var='detectionrate'
     print(db(model,var))
 
@@ -41,9 +41,16 @@ For the same population synthesis simulation, this is the mass ratio of black ho
 
 We provide a database in `h5` format containing all population sysnthesis distributions perfomed with [StarTrack](https://www.syntheticuniverse.org/) and post-processed with [precession](https://davidegerosa.com/precession/).
 
-The database's size is ~17GB, and can be downloaded in chunks from the [GitHub release page](https://github.com/dgerosa/spops/releases).
+The database's size is ~17GB, and needs to be downloaded in chunks from the [GitHub release page](https://github.com/dgerosa/spops/releases). Execute the following:
 
-Models are described by the following options: 
+    for i in $(seq -f "%02g" 0 16); do
+    wget "https://github.com/dgerosa/spops/releases/download/v0.2/spops.h5_"$i;
+    done
+    cat spops.h5_* > spops.h5; rm spops.h5_*
+
+(on mac: `brew install wget').
+
+Models are described by the following options:
   - **kicks**. Magnitude of the Supernova kicks. Available options are `['0','25','50','70','130','200','265']`.
   - **spins**. Prescription for the spin magnitudes. Available options are `['collapse','max','uniform']`.
   - **tides**. Prescription for tidal spin alignment. Available options are `['time','alltides','notides']`.
@@ -79,22 +86,16 @@ The following variables are available:
 
 ### Python module
 
-We also provide a simple python module to facitate access to our database. `spops` is compatible with both Python 2 and Python 3 and can installed from the [Python Package index](https://pypi.python.org/pypi/surrkick) using:
+We also provide a simple python module to facitate access to our database. `spops` is compatibule with both Python 2 and Python 3 and can installed from the [Python Package index](https://pypi.python.org/pypi/surrkick) using:
 
     pip install spops
 
-To download the database enter a python console and type:
-    
-    spops.download()
-
-By default, this will save the database in the current location. You can use the link above and assemble the database manually with something like `cat spops.h5_* > spops.h5`.  
-
-The module contains a single class, called `database`. To initialize the class:
+Remember to download and assemble the database as described above. The module contains a single class, called `database`. To initialize the class:
 
     import spops
     db = spops.database(h5filename='spops.h5',h5dir=None)
 
-The input parameters are: 
+The input parameters are:
 
   - `h5filename`: database file name, default is `spops.h5`.
   - `h5dir`: directory of the database; if `None` (default) the code will look for detabase in both the location where the `spops` module is installed (this is `os.path.dirname(os.path.abspath(spops.__file__))`) and the execution location (this is `.`).
@@ -109,7 +110,7 @@ One can then access the datasets described above by just calling the database cl
     print(db(model,var))
 
 To list the model options and the available variables use
-    
+
     print(db.options)
     print(db.vars)
 
@@ -120,7 +121,7 @@ To list the model options and the available variables use
         db1=spops.database()
         db2=spops.database()
         print(db1==db2)
-          
+
 
         >>>> True
 
@@ -133,7 +134,6 @@ To list the model options and the available variables use
         var='Mzams_a'
         read_from_spops(model,var)
         read_from_spops(model,var)
-      
-        >>>> function read_from_spops execution time: 0.002 
-        >>>> function read_from_spops execution time: 0.000 
 
+        >>>> function read_from_spops execution time: 0.002
+        >>>> function read_from_spops execution time: 0.000
