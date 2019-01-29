@@ -11,10 +11,7 @@ warnings.filterwarnings("ignore", message="numpy.dtype size changed")
 import os,sys
 import numpy as np
 import h5py
-import requests
 from singleton_decorator import singleton
-import hashlib
-import time
 
 if __name__!="__main__":
     __name__            = "spops"
@@ -140,33 +137,33 @@ class database(object):
 
 
 if __name__ == "__main__":
-    pass
-    #download()
-    #
-    # db=database()
-    # model = {"kicks":"70", "spins":"collapse", "tides":"time", "detector":"LIGO"}
-    # var='chieff'
-    # print(db(model,var))
-    # var='detectionrate'
-    # print(db(model,var))
-    #
-    # model = {"kicks":"70", "spins":"collapse", "tides":"time", "detector":"LISACosmicExplorer", "Tobs":"10", "SNRthr":"8"}
-    # var='q'
-    # print(db(model,var))
-    # var='detectionrate'
-    # print(db(model,var))
-    #
-    # db1=database()
-    # db2=database()
-    # print(db1==db2)
-    #
-    # from contexttimer import timer
-    # @timer()
-    # def read_from_spops(model,var):
-    #     return db(model,var)
-    # var='Mzams_a'
-    # read_from_spops(model,var)
-    # read_from_spops(model,var)
-    #
-    # print(db.options)
-    # print(db.vars)
+
+    download()
+
+    db=database()
+    model = {"kicks":"70", "spins":"collapse", "tides":"time", "detector":"LIGO"}
+    var='chieff'
+    print(db(model,var))
+    var='detectionrate'
+    print(db(model,var))
+
+    model = {"kicks":"70", "spins":"collapse", "tides":"time", "detector":"LISACosmicExplorer", "Tobs":"10", "SNRthr":"8"}
+    var='q'
+    print(db(model,var))
+    var='detectionrate'
+    print(db(model,var))
+
+    db1=database()
+    db2=database()
+    print(db1==db2)
+
+    from contexttimer import timer
+    @timer()
+    def read_from_spops(model,var):
+        return db(model,var)
+    var='Mzams_a'
+    read_from_spops(model,var)
+    read_from_spops(model,var)
+
+    print(db.options)
+    print(db.vars)

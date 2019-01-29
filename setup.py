@@ -29,7 +29,7 @@ setup(
     ],
     keywords='gravitational-wave, black-hole binary',
     packages=[get_meta('name')],
-    install_requires=['numpy','h5py','requests','singleton_decorator','contexttimer'],
+    install_requires=['numpy','h5py','singleton_decorator','contexttimer'],
     include_package_data=True,
     zip_safe=False,
 )
