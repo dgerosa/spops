@@ -13,6 +13,8 @@ import numpy as np
 import h5py
 import requests
 from singleton_decorator import singleton
+import hashlib
+import time
 
 if __name__!="__main__":
     __name__            = "spops"
@@ -23,41 +25,6 @@ __author__              = "Davide Gerosa"
 __author_email__        = "dgerosa@caltech.edu"
 __url__                 = "https://github.com/dgerosa/spops"
 
-
-def download(outfile=None):
-
-    if outfile==None:
-        outfile = os.getcwd()+'/spops.h5'
-
-    bits = ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16']
-    allbits = " ".join([os.getcwd()+'/spops.h5_'+bit for bit in bits])
-
-
-    for bit in bits:
-        url = 'https://github.com/dgerosa/spops/releases/download/v'+__version__+'/spops.h5_'+bit
-        filebits = os.getcwd()+'/spops.h5_'+bit
-
-        print("Downloading chunk from url:\n"+url)
-
-        response = requests.get(url, stream=True)
-        handle = open(filebits, "wb")
-        print("In progress...")
-        for chunk in response.iter_content(chunk_size=1024):
-            if chunk:  # filter out keep-alive new chunks
-                handle.write(chunk)
-        filesize = round(os.path.getsize(filebits)/1024.**2.,2) # MB
-        if filesize<1.:
-            os.remove(filebits)
-            raise IOError("Could not download database. Please find the latest version at"+"\n"+"https://github.com/dgerosa/spops/releases")
-
-    print("Assembling database at:\n"+outfile)
-    os.system('cat '+allbits+' > '+outfile)
-    os.system('rm '+allbits)
-    filesize = round(os.path.getsize(outfile)/1024.**3.,2) # MB
-    print("Done! Size: "+str(filesize)+" GB.")
-
-
-    return outfile
 
 @singleton
 class database(object):
@@ -173,33 +140,33 @@ class database(object):
 
 
 if __name__ == "__main__":
-
+    pass
     #download()
-
-    db=database()
-    model = {"kicks":"70", "spins":"collapse", "tides":"time", "detector":"LIGO"}
-    var='chieff'
-    print(db(model,var))
-    var='detectionrate'
-    print(db(model,var))
-
-    model = {"kicks":"70", "spins":"collapse", "tides":"time", "detector":"LISACosmicExplorer", "Tobs":"10", "SNRthr":"8"}
-    var='q'
-    print(db(model,var))
-    var='detectionrate'
-    print(db(model,var))
-
-    db1=database()
-    db2=database()
-    print(db1==db2)
-
-    from contexttimer import timer
-    @timer()
-    def read_from_spops(model,var):
-        return db(model,var)
-    var='Mzams_a'
-    read_from_spops(model,var)
-    read_from_spops(model,var)
-
-    print(db.options)
-    print(db.vars)
+    #
+    # db=database()
+    # model = {"kicks":"70", "spins":"collapse", "tides":"time", "detector":"LIGO"}
+    # var='chieff'
+    # print(db(model,var))
+    # var='detectionrate'
+    # print(db(model,var))
+    #
+    # model = {"kicks":"70", "spins":"collapse", "tides":"time", "detector":"LISACosmicExplorer", "Tobs":"10", "SNRthr":"8"}
+    # var='q'
+    # print(db(model,var))
+    # var='detectionrate'
+    # print(db(model,var))
+    #
+    # db1=database()
+    # db2=database()
+    # print(db1==db2)
+    #
+    # from contexttimer import timer
+    # @timer()
+    # def read_from_spops(model,var):
+    #     return db(model,var)
+    # var='Mzams_a'
+    # read_from_spops(model,var)
+    # read_from_spops(model,var)
+    #
+    # print(db.options)
+    # print(db.vars)
