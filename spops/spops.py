@@ -138,8 +138,6 @@ class database(object):
 
 if __name__ == "__main__":
 
-    download()
-
     db=database()
     model = {"kicks":"70", "spins":"collapse", "tides":"time", "detector":"LIGO"}
     var='chieff'
