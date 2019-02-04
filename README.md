@@ -5,7 +5,7 @@ Data release supporting:
 * *Spin orientations of merging black holes formed from the evolution of stellar binaries.*
   Davide Gerosa, Emanuele Berti, Richard O’Shaughnessy, Krzysztof Belczynski, Michael Kesden, Daniel Wysocki, Wojciech Gladysz. Physical Review D 98 (2018) [084036](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.98.084036). arXiv:[1808.02491](http://arxiv.org/abs/arXiv:1808.02491) [astro-ph.HE].
 * *Multiband gravitational-wave event rates and stellar physics.*
-  Davide Gerosa, Sizheng Ma, Kaze W.K. Wong, Emanuele Berti, Richard O’Shaughnessy, Yanbei Chen, Krzysztof Belczynski. arXiv:[XXXX.XXXXX](http://arxiv.org/abs/arXiv:XXXX.XXXXX) [astro-ph.HE].
+  Davide Gerosa, Sizheng Ma, Kaze W.K. Wong, Emanuele Berti, Richard O’Shaughnessy, Yanbei Chen, Krzysztof Belczynski. arXiv:[1902.00021](http://arxiv.org/abs/arXiv:1902.00021) [astro-ph.HE].
 
 Here provide our database and a short python code to query it.
 
