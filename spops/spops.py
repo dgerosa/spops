@@ -15,7 +15,7 @@ from singleton_decorator import singleton
 
 if __name__!="__main__":
     __name__            = "spops"
-__version__             = "0.2"
+__version__             = "0.2.1"
 __description__         = "Database of population synthesis simulations of spinning black-hole binaries"
 __license__             = "MIT"
 __author__              = "Davide Gerosa"

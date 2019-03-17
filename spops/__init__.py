@@ -6,5 +6,4 @@ from .spops import __author__
 from .spops import __author_email__
 from .spops import __url__
 
-from .spops import download
 from .spops import database
