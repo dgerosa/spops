@@ -76,7 +76,7 @@ The following variables are available:
   - `chi1`: Spin of the heavier black hole.
   - `chi2`: Spin of the lighter black hole.
   - `chieff`: Black-hole binary effective spin
-  - `morph`: Spin morphology (-1: Librating about $0$, 0: Circulating, +1: Librating about $\pi$)
+  - `morph`: Spin morphology (-1: Librating about 0, 0: Circulating, +1: Librating about pi)
   - `theta1`: Tilt angle of the heavier black hole at 20 Hz.
   - `theta2`: Tilt angle of the heavier black hole at 20 Hz.
   - `deltaphi`: Difference between the azimuthal spin angles at 20 Hz.
@@ -86,7 +86,7 @@ The following variables are available:
 
 ### Python module
 
-We also provide a simple python module to facitate access to our database. `spops` is compatibule with both Python 2 and Python 3 and can installed from the [Python Package index](https://pypi.python.org/pypi/surrkick) using:
+We also provide a simple python module to query the database. `spops` is compatible with both Python 2 and Python 3 and can be installed from the [Python Package index](https://pypi.python.org/pypi/spops) using:
 
     pip install spops
 
